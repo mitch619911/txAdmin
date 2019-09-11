@@ -43,21 +43,21 @@ module.exports = async function action(res, req) {
     }
 
 
-    //==============================================
+    //===============Edited by Mitch================
     if(action == 'admin_broadcast'){
         if(!ensurePermission('commands.message', res, req)) return false;
-        let cmd = `txaBroadcast "${escape(parameter)}"`;
+        let cmd = `txaBroadcast "${req.session.auth.username}: ${escape(parameter)}"`;
         webUtils.appendLog(req, cmd, context);
         let toResp = await globals.fxRunner.srvCmdBuffer(cmd);
         return sendAlertOutput(res, toResp);
 
-    //==============================================
+    //===============Edited by Mitch================
     }else if(action == 'admin_dm'){
         if(!ensurePermission('commands.message', res, req)) return false;
         if(!Array.isArray(parameter) || parameter.length !== 2){
             return sendAlertOutput(res, 'Invalid request');
         }
-        let cmd = `txaSendDM ${parameter[0]} "${escape(parameter[1])}"`;
+        let cmd = `txaSendDM ${parameter[0]} "${req.session.auth.username}: ${escape(parameter[1])}"`;
         webUtils.appendLog(req, cmd, context);
         let toResp = await globals.fxRunner.srvCmdBuffer(cmd);
         return sendAlertOutput(res, toResp);
