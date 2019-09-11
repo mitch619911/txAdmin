@@ -3,6 +3,8 @@ const fs = require('fs-extra');
 const Discord = require('discord.js');
 const { dir, log, logOk, logWarn, logError, cleanTerminal } = require('../extras/console');
 const context = 'DiscordBot';
+var humanizeDuration = require('humanize-duration');
+
 
 
 module.exports = class DiscordBot {
@@ -127,9 +129,16 @@ module.exports = class DiscordBot {
             let desc = '';
             if(globals.config.forceFXServerPort || globals.fxRunner.fxServerPort){
                 let port = (globals.config.forceFXServerPort)? globals.config.forceFXServerPort : globals.fxRunner.fxServerPort;
+            // Edited by Mitch
+                let uptime1 = Math.round(Date.now()/1000) - globals.fxRunner.tsChildStarted;
+                let uptime2 = Math.round(uptime1*1000);
+                let uptime3 = humanizeDuration(uptime2);
+                    
                 desc += `**IP:** ${globals.config.publicIP}:${port}\n`;
                 desc += `**Players:** ${players}\n`;
-            }
+                desc += `**Uptime:** ${uptime3}\n`;
+            // Edited by Mitch
+            } 
             //TODO: humanize & localize
             // let uptime = Math.round(Date.now()/1000) - globals.fxRunner.tsChildStarted;
             // desc += `**Uptime:** ${uptime} seconds\n`;
@@ -176,7 +185,6 @@ module.exports = class DiscordBot {
             message.author.id
             message.guild.name //servername
             message.channel.name
-
             message.reply('pong'); //<<reply directly to the user mentioning him
             message.channel.send('Pong.');
         */
