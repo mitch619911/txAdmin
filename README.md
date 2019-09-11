@@ -16,7 +16,7 @@
 
 <br/>
 
--Edited by Mitch, added admin username to broadcast & admin dm and added/edited Discord uptime humanized & localized.
+## -Edited by Mitch, added admin username to broadcast & admin dm and added/edited Discord uptime humanized & localized.
 
 ## Features
 - Start/Stop/Restart your server instance or resources
