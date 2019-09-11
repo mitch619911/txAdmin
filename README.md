@@ -18,6 +18,7 @@
 
 ## -Edited by Mitch, added admin username to broadcast & admin dm and added/edited Discord uptime humanized & localized.
 
+<br/>
 ## Features
 - Start/Stop/Restart your server instance or resources
 - Access control via multiple credentials and action logging
